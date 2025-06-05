@@ -30,7 +30,9 @@ func init() {
 		Name:            "facebook",
 		Title:           "Facebook",
 		Icon:            "facebook.svg",
+		NewOptions:      func() any { return new(Options) },
 		NewFileImporter: func() timeline.FileImporter { return new(Archive) },
+		NewAPIImporter:  func() timeline.APIImporter { return new(APIClient) },
 	})
 	if err != nil {
 		timeline.Log.Fatal("registering data source", zap.Error(err))
